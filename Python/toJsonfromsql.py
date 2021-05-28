@@ -4,14 +4,16 @@ import pandas as pd
 from pandas import DataFrame
 import numpy as np
 
-db_file = r"C:\Users\sunrise\Documents\Kasim\Submission\MedinaArabic\MedinaArabic1.db"
-# save_json=  r"C:\Users\sunrise\Documents\Kasim\Submission\MedinaArabic\lesson1.json"
+db_file = r"C:\Users\sunrise\Documents\Kasim\Submission\MedinaArabic\MedinaArabicAll.sqlite"
+save_json=  r"C:\Users\sunrise\Documents\Kasim\Submission\MedinaArabic\lesson3.json"
 
-save_json =  r"C:\Users\sunrise\code\template\src\lesson1.json"
+# save_json =  r"C:\Users\sunrise\code\template\src\lesson1.json"
+
+# save_json =  r"C:\Users\sunrise\github\react-flashcards\react-flashcard\src\book1.json"
 
 conn = sqlite3.connect(db_file)
 cur = conn.cursor()
-query = "SELECT * FROM BOOK1 WHERE Lesson=1"
+query = "SELECT * FROM BOOK3"
 
 data = pd.read_sql(query, conn)
 data['English'] = data['English'].str.capitalize()

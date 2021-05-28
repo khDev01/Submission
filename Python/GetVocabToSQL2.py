@@ -11,15 +11,14 @@ import numpy as np
 columnNo = []
 columnA = []
 columnB = []
-
-# book 1 has 23 lessons
+getBook = "Book2"
 test = False
-maxLessons = 24
+maxLessons = 27
 if test == True:
     maxLessons = 3
 
 for x in range(1, maxLessons):
-    url = 'https://app.memrise.com/course/298802/madina-arabic-book-1-2/' + str(x) + '/'
+    url = 'https://app.memrise.com/course/153111/madina-arabic-book-2-english-key/' + str(x) + '/'
     response = requests.get(url, timeout=5)
     # print(response.status_code) # 200 OK page is present
     soup = BeautifulSoup(response.content, "html.parser")
@@ -38,23 +37,23 @@ conn = sqlite3.connect('C:\\Users\\sunrise\\Documents\\Kasim\\Submission\\Medina
 c = conn.cursor()
 
 c.execute('''
-DROP TABLE BOOK1;
+DROP TABLE BOOK2;
           ''')
 
-c.execute('CREATE TABLE BOOK1 (Lesson, English, Arabic)')
+c.execute('CREATE TABLE BOOK2 (Lesson, English, Arabic)')
 conn.commit()
 
-book1 = {'Lesson':columnNo,
-        'English':columnA,
-        'Arabic':columnB
-        }
+book = {'Lesson':columnNo,
+    'English':columnA,
+    'Arabic':columnB
+    }
 
-df = DataFrame(book1, columns= ['Lesson', 'English', 'Arabic'])
-df.to_sql('BOOK1', conn, if_exists='replace', index = False)
+df = DataFrame(book, columns= ['Lesson', 'English', 'Arabic'])
+df.to_sql('BOOK2', conn, if_exists='replace', index = False)
 
 c.execute('''
-SELECT * FROM Book1
-          ''')
+SELECT * FROM Book2
+      ''')
 
-# for row in c.fetchall():
-#     print (row)
+for row in c.fetchall():
+    print (row)
