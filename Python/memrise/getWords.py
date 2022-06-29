@@ -11,7 +11,7 @@ columnA = []
 columnB = []
 
 # book 1 has 23 lessons
-for x in range(1, 24):
+for x in range(1, 3):
     url = 'https://app.memrise.com/course/298802/madina-arabic-book-1-2/' + str(x) + '/'
     response = requests.get(url, timeout=5)
     # print(response.status_code) # 200 OK page is present
@@ -30,6 +30,7 @@ for x in range(1, 24):
 df = pd.DataFrame({'Lesson':columnNo,
                    'English':columnA,
                    'Arabic':columnB})
-writer = ExcelWriter('Documents\\Kasim\\MedinaArabic\\Book1Vocab.xlsx')
+writer = ExcelWriter('C:\\Users\\sunrise\\Desktop\\test1.xlsx')
 df.to_excel(writer,'Sheet1',index=False)
 writer.save()
+# input()

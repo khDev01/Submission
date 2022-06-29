@@ -12,6 +12,8 @@ columnNo = []
 columnA = []
 columnB = []
 
+# 1st url used 'https://app.memrise.com/course/298802/madina-arabic-book-1-2/'
+
 # book 1 has 23 lessons
 test = False
 maxLessons = 24
@@ -19,7 +21,7 @@ if test == True:
     maxLessons = 3
 
 for x in range(1, maxLessons):
-    url = 'https://app.memrise.com/course/298802/madina-arabic-book-1-2/' + str(x) + '/'
+    url = 'https://app.memrise.com/course/54796/medina-arabic-book-1-no-typing/' + str(x) + '/'
     response = requests.get(url, timeout=5)
     # print(response.status_code) # 200 OK page is present
     soup = BeautifulSoup(response.content, "html.parser")
@@ -34,12 +36,12 @@ for x in range(1, maxLessons):
     for rows in colb:
         columnB.append(rows.text)
 
-conn = sqlite3.connect('C:\\Users\\sunrise\\Documents\\Kasim\\Submission\\MedinaArabic\\MedinaArabicAll.sqlite')
+conn = sqlite3.connect('C:\\Users\\sunrise\\Documents\\Kasim\\Submission\\Python\\data\\MedinaArabicAll.sqlite')
 c = conn.cursor()
 
-c.execute('''
-DROP TABLE BOOK1;
-          ''')
+# c.execute('''
+# DROP TABLE BOOK1;
+#           ''')
 
 c.execute('CREATE TABLE BOOK1 (Lesson, English, Arabic)')
 conn.commit()
